@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 /**
  * @author lzh
- * @description: TODO
+ * @description: 工作经历
  * @date 2025/11/9 17:00
  */
 @Data
