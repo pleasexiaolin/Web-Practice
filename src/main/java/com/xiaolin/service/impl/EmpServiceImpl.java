@@ -11,6 +11,7 @@ import com.xiaolin.pojo.EmpQueryParam;
 import com.xiaolin.service.EmpService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
@@ -34,6 +35,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result save(Emp emp) {
         //1.补全基础属性
         emp.setCreateTime(LocalDateTime.now());
@@ -54,6 +56,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result remove(Integer[] ids) {
         empMapper.removeEmp(ids);
         empMapper.removeExpr(ids);
@@ -72,6 +75,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result update(Emp emp) {
         empMapper.updateEmp(emp);
         List<EmpExpr> exprList = emp.getExprList();
