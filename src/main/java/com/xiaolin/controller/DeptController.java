@@ -2,8 +2,7 @@ package com.xiaolin.controller;
 
 import com.xiaolin.common.Result;
 import com.xiaolin.pojo.Dept;
-import com.xiaolin.service.DeptServiceImpl;
-import com.xiaolin.service.impl.DeptService;
+import com.xiaolin.service.DeptService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/dept")
+//@RequestMapping("/api")
 public class DeptController {
     /**
      * 服务对象
@@ -24,19 +23,7 @@ public class DeptController {
     @Resource
     private DeptService deptService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("/info")
-    public Result info(Integer id) {
-        return deptService.selectByPrimaryKey(id);
-    }
-
-
-    @GetMapping("/list")
+    @GetMapping("/depts")
     public Result list() {
         log.info("查询部门列表开始...");
         Result result = deptService.list();
@@ -44,17 +31,17 @@ public class DeptController {
         return result;
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/depts")
     public Result delete(Integer id) {
         return deptService.deleteByPrimaryKey(id);
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/depts")
     public Result insert(@RequestBody Dept dept) {
         return deptService.insert(dept);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/depts")
     public Result update(@RequestBody Dept dept) {
         return deptService.updateByPrimaryKeySelective(dept);
     }

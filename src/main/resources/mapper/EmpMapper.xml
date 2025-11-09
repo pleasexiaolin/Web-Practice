@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaolin.mapper.EmpMapper">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.xiaolin.pojo.Emp">
+        <!--@mbg.generated-->
+        select *
+        from emp
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from emp
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xiaolin.pojo.Emp" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into emp (username, `password`, `name`,
+                         gender, phone, job, salary,
+                         image, entry_date, dept_id,
+                         create_time, update_time)
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{gender,jdbcType=TINYINT}, #{phone,jdbcType=CHAR}, #{job,jdbcType=TINYINT}, #{salary,jdbcType=INTEGER},
+                #{image,jdbcType=VARCHAR}, #{entryDate,jdbcType=DATE}, #{deptId,jdbcType=INTEGER},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xiaolin.pojo.Emp"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                `password`,
+            </if>
+            <if test="name != null and name != ''">
+                `name`,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="phone != null and phone != ''">
+                phone,
+            </if>
+            <if test="job != null">
+                job,
+            </if>
+            <if test="salary != null">
+                salary,
+            </if>
+            <if test="image != null and image != ''">
+                image,
+            </if>
+            <if test="entryDate != null">
+                entry_date,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=TINYINT},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone,jdbcType=CHAR},
+            </if>
+            <if test="job != null">
+                #{job,jdbcType=TINYINT},
+            </if>
+            <if test="salary != null">
+                #{salary,jdbcType=INTEGER},
+            </if>
+            <if test="image != null and image != ''">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="entryDate != null">
+                #{entryDate,jdbcType=DATE},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xiaolin.pojo.Emp">
+        <!--@mbg.generated-->
+        update emp
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=TINYINT},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone,jdbcType=CHAR},
+            </if>
+            <if test="job != null">
+                job = #{job,jdbcType=TINYINT},
+            </if>
+            <if test="salary != null">
+                salary = #{salary,jdbcType=INTEGER},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="entryDate != null">
+                entry_date = #{entryDate,jdbcType=DATE},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xiaolin.pojo.Emp">
+        <!--@mbg.generated-->
+        update emp
+        set username    = #{username,jdbcType=VARCHAR},
+            `password`  = #{password,jdbcType=VARCHAR},
+            `name`      = #{name,jdbcType=VARCHAR},
+            gender      = #{gender,jdbcType=TINYINT},
+            phone       = #{phone,jdbcType=CHAR},
+            job         = #{job,jdbcType=TINYINT},
+            salary      = #{salary,jdbcType=INTEGER},
+            image       = #{image,jdbcType=VARCHAR},
+            entry_date  = #{entryDate,jdbcType=DATE},
+            dept_id     = #{deptId,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultType="com.xiaolin.pojo.Emp">
+        select e.*, d.name deptName from emp as e left join dept as d on e.dept_id = d.id
+        <where>
+            <if test="name != null and name != ''">
+                e.name like concat('%',#{name},'%')
+            </if>
+            <if test="gender != null">
+                and e.gender = #{gender}
+            </if>
+            <if test="begin != null and end != null">
+                and e.entry_date between #{begin} and #{end}
+            </if>
+        </where>
+    </select>
+</mapper>

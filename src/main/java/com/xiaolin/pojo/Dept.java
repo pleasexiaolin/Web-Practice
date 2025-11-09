@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Dept {
+public class  Dept {
     /**
      * ID, 主键
      */

@@ -1,4 +1,4 @@
-package com.xiaolin.service.impl;
+package com.xiaolin.service;
 
 import com.xiaolin.common.Result;
 import com.xiaolin.pojo.Dept;

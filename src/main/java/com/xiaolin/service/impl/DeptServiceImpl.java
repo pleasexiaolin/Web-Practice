@@ -1,12 +1,12 @@
-package com.xiaolin.service;
+package com.xiaolin.service.impl;
 
 import com.xiaolin.common.Result;
+import com.xiaolin.service.DeptService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.xiaolin.mapper.DeptMapper;
 import com.xiaolin.pojo.Dept;
-import com.xiaolin.service.impl.DeptService;
 
 import java.time.LocalDateTime;
 import java.util.List;
