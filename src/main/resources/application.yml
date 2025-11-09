@@ -9,6 +9,7 @@ spring:
     username: ENC(M5NYxGt+gAbrz0kF7omqnStzf8UoYJsErSHxcFOEyWpQlsWuB40FVAD6s1i41KYe)
     password: ENC(blTQg1aZyRglrszoHDP32lR+X7icYZoINgKy9JT6BbPHELrGzBa7bu8PF/2AmrTC)
 mybatis:
+  mapper-locations: classpath:mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true

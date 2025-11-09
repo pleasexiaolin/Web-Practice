@@ -9,13 +9,7 @@ public interface DeptService {
 
     Result insert(Dept record);
 
-    int insertSelective(Dept record);
-
-    Result selectByPrimaryKey(Integer id);
-
     Result updateByPrimaryKeySelective(Dept record);
-
-    int updateByPrimaryKey(Dept record);
 
     Result list();
 }

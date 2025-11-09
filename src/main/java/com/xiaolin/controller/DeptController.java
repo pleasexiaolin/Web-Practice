@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-//@RequestMapping("/api")
+@RequestMapping("/depts")
 public class DeptController {
     /**
      * 服务对象
@@ -23,25 +23,45 @@ public class DeptController {
     @Resource
     private DeptService deptService;
 
-    @GetMapping("/depts")
+    /**
+     * 查询所有部门数据
+     *
+     * @return 所有数据
+     */
+    @GetMapping
     public Result list() {
-        log.info("查询部门列表开始...");
-        Result result = deptService.list();
-        log.info("查询部门列表结束。data：{}", result.getData());
-        return result;
+        return deptService.list();
     }
 
-    @DeleteMapping("/depts")
+    /**
+     * 删除数据
+     *
+     * @param id 主键
+     * @return 删除是否成功
+     */
+    @DeleteMapping
     public Result delete(Integer id) {
         return deptService.deleteByPrimaryKey(id);
     }
 
-    @PostMapping("/depts")
+    /**
+     * 新增数据
+     *
+     * @param dept 实体
+     * @return 新增结果
+     */
+    @PostMapping
     public Result insert(@RequestBody Dept dept) {
         return deptService.insert(dept);
     }
 
-    @PutMapping("/depts")
+    /**
+     * 修改数据
+     *
+     * @param dept 实体
+     * @return 修改结果
+     */
+    @PutMapping
     public Result update(@RequestBody Dept dept) {
         return deptService.updateByPrimaryKeySelective(dept);
     }

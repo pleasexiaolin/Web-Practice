@@ -1,30 +1,32 @@
 package com.xiaolin.mapper;
 
 import com.xiaolin.pojo.Emp;
+import com.xiaolin.pojo.EmpExpr;
 import com.xiaolin.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
 public interface EmpMapper {
-    int deleteByPrimaryKey(Integer id);
+    List<Emp> listEmp(EmpQueryParam queryParam);
 
-    int insert(Emp record);
+    List<EmpExpr> listExpr(Integer id);
 
-    int insertSelective(Emp record);
+    void insertExprBatch(@Param("exprList") List<EmpExpr> exprList);
 
-    Emp selectByPrimaryKey(Integer id);
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insertEmp(Emp emp);
 
-    int updateByPrimaryKeySelective(Emp record);
+    void removeEmp(@Param("ids") Integer[] ids);
 
-    int updateByPrimaryKey(Emp record);
+    void removeExpr(@Param("ids") Integer[] ids);
 
-    List<Emp> list(EmpQueryParam queryParam);
+    Emp info(Integer id);
 
-    @Select("select count(*) from emp e left join dept d on e.dept_id = d.id ")
-    Long count();
+    void updateEmp(@Param("emp") Emp emp);
+
+    void updateExpr(@Param("expr")EmpExpr expr);
 }
