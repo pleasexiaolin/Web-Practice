@@ -3,11 +3,19 @@ spring:
     name: Web-Practice
   #mysql连接配置
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tlias
-    username: root
-    password: admin
+    url: ENC(hc/wQ+A7xgkZ9LSzfuSOsP4mamMWiq7ZdvS9p7xWYyF93FClir9cZomyfigZJutrd7Lulr5zoSnNzzXfrKHT4pfSkcma+j/ItjLNHEp7NFg=)
+    username: ENC(M5NYxGt+gAbrz0kF7omqnStzf8UoYJsErSHxcFOEyWpQlsWuB40FVAD6s1i41KYe)
+    password: ENC(blTQg1aZyRglrszoHDP32lR+X7icYZoINgKy9JT6BbPHELrGzBa7bu8PF/2AmrTC)
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+    property:
+      prefix: ENC(
+      suffix: )
