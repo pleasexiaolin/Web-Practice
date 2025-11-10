@@ -15,7 +15,7 @@
 <!--	<springProfile name="prod">-->
 <!--		<property name="log.path" value="/data/yw_user/logs/ypzfyth" />-->
 <!--	</springProfile>-->
-	<property name="log.path" value="G:/Log/Web"/>
+	<property name="log.path" value="D:/Log/Web"/>
 
 	<!-- 彩色日志 -->
 	<!-- 彩色日志依赖的渲染类 -->

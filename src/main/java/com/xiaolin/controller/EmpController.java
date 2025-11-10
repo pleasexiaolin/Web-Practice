@@ -45,8 +45,8 @@ public class EmpController {
 
     /**
      * 删除员工
-     * @param ids
-     * @return
+     * @param ids 主键id
+     * @return 删除结果
      */
     @DeleteMapping
     private Result deleteEmp(Integer[] ids){
@@ -56,8 +56,8 @@ public class EmpController {
 
     /**
      * 员工详情
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 详情信息
      */
     @GetMapping("/info")
     private Result info(Integer id){
@@ -66,8 +66,8 @@ public class EmpController {
 
     /**
      * 员工详情
-     * @param emp
-     * @return
+     * @param emp 员工信息
+     * @return 修改结果
      */
     @PutMapping
     private Result update(Emp emp){
