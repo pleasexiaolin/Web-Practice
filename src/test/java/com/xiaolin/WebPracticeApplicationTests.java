@@ -1,9 +1,7 @@
 package com.xiaolin;
 
-import com.xiaolin.mapper.EmpMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.UUID;
@@ -28,5 +26,7 @@ class WebPracticeApplicationTests {
         System.out.println(uniqueFileName);
 
     }
+
+
 
 }

@@ -8,6 +8,11 @@ spring:
     url: ENC(hc/wQ+A7xgkZ9LSzfuSOsP4mamMWiq7ZdvS9p7xWYyF93FClir9cZomyfigZJutrd7Lulr5zoSnNzzXfrKHT4pfSkcma+j/ItjLNHEp7NFg=)
     username: ENC(M5NYxGt+gAbrz0kF7omqnStzf8UoYJsErSHxcFOEyWpQlsWuB40FVAD6s1i41KYe)
     password: ENC(blTQg1aZyRglrszoHDP32lR+X7icYZoINgKy9JT6BbPHELrGzBa7bu8PF/2AmrTC)
+  #文件配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

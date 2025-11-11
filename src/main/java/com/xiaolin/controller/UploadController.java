@@ -1,12 +1,13 @@
 package com.xiaolin.controller;
 
 import com.xiaolin.common.Result;
+import com.xiaolin.utils.FileOperateUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -19,14 +20,12 @@ import java.io.IOException;
 public class UploadController {
 
     @GetMapping("/upload")
-    public Result upload(String name, String age, MultipartFile file) throws IOException {
+    public Result upload(MultipartFile file) throws IOException {
+        return FileOperateUtil.upload(file, false);
+    }
 
-        log.info("上传文件为：{}，{}，{}", name, age, file);
-
-        if (!file.isEmpty()) {
-            file.transferTo(new File("D:\\file\\images" + file.getOriginalFilename()));
-        }
-
-        return Result.success();
+    @GetMapping("/download")
+    public Result download(String path, String fileName, HttpServletResponse response) {
+        return FileOperateUtil.download(path, fileName, response);
     }
 }
