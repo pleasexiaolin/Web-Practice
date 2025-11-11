@@ -7,53 +7,16 @@ import com.xiaolin.pojo.EmpQueryParam;
 
 public interface EmpService {
 
-    /**
-     * 分页查询
-     *
-     * @param condition 查询参数
-     * @return 分页数据
-     */
     PageResult<Emp> page(EmpQueryParam condition);
 
-    /**
-     * 新增
-     *
-     * @param emp
-     * @return
-     */
-    Result save(Emp emp);
+    Result insert(Emp emp);
 
+    Result delete(Integer[] ids);
 
-    /**
-     * 批量删除
-     *
-     * @param ids
-     * @return
-     */
-    Result remove(Integer[] ids);
-
-    /**
-     * 详情
-     *
-     * @param id
-     * @return
-     */
     Result info(Integer id);
 
-    /**
-     * 修改
-     *
-     * @param emp
-     * @return
-     */
     Result update(Emp emp);
 
-    /**
-     * 登录
-     *
-     * @param emp
-     * @return
-     */
     Result login(Emp emp);
 }
 

@@ -48,10 +48,12 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result save(Emp emp) {
+    public Result insert(Emp emp) {
         //1.补全基础属性
         emp.setCreateTime(LocalDateTime.now());
         emp.setUpdateTime(LocalDateTime.now());
+
+        emp.setPassword("123456");
 
         // 2.新增员工
         empMapper.insertEmp(emp);
@@ -69,9 +71,9 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result remove(Integer[] ids) {
-        empMapper.removeEmp(ids);
-        empMapper.removeExpr(ids);
+    public Result delete(Integer[] ids) {
+        empMapper.deleteEmp(ids);
+        empMapper.deleteExpr(ids);
         return Result.success();
     }
 

@@ -9,43 +9,18 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * 部门表(dept)表控制层
- *
- * @author xxxxx
+ * 部门模块controller
  */
 @Slf4j
 @RestController
 @RequestMapping("/depts")
 public class DeptController {
-    /**
-     * 服务对象
-     */
+
     @Resource
     private DeptService deptService;
 
     /**
-     * 查询所有部门数据
-     *
-     * @return 所有数据
-     */
-    @GetMapping
-    public Result list() {
-        return deptService.list();
-    }
-
-    /**
-     * 删除数据
-     *
-     * @param id 主键
-     * @return 删除是否成功
-     */
-    @DeleteMapping
-    public Result delete(Integer id) {
-        return deptService.deleteByPrimaryKey(id);
-    }
-
-    /**
-     * 新增数据
+     * 新增部门
      *
      * @param dept 实体
      * @return 新增结果
@@ -56,13 +31,34 @@ public class DeptController {
     }
 
     /**
-     * 修改数据
+     * 删除部门
+     *
+     * @param id 主键
+     * @return 删除是否成功
+     */
+    @DeleteMapping
+    public Result delete(Integer id) {
+        return deptService.delete(id);
+    }
+
+    /**
+     * 修改部门
      *
      * @param dept 实体
      * @return 修改结果
      */
     @PutMapping
     public Result update(@RequestBody Dept dept) {
-        return deptService.updateByPrimaryKeySelective(dept);
+        return deptService.update(dept);
+    }
+
+    /**
+     * 查询所以部门数据
+     *
+     * @return 所有数据
+     */
+    @GetMapping
+    public Result list() {
+        return deptService.list();
     }
 }

@@ -18,7 +18,6 @@ public class JwtUtil {
 
     private static final Long EXPIRATION = 60 * 60 * 24L; //过期时间24小时
 
-
     /**
      * 生成JWT令牌
      */

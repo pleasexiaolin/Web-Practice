@@ -5,11 +5,11 @@ import com.xiaolin.pojo.Dept;
 
 public interface DeptService {
 
-    Result deleteByPrimaryKey(Integer id);
+    Result delete(Integer id);
 
     Result insert(Dept record);
 
-    Result updateByPrimaryKeySelective(Dept record);
+    Result update(Dept record);
 
     Result list();
 }

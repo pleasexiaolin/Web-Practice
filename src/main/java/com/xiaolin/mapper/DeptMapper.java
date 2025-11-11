@@ -7,12 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface DeptMapper {
-    int deleteByPrimaryKey(Integer id);
-
     int insert(Dept record);
 
-    int updateByPrimaryKeySelective(Dept record);
+    int delete(Integer id);
+
+    int update(Dept record);
 
     List<Dept> list();
-
 }

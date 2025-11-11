@@ -17,8 +17,8 @@ public class DeptServiceImpl implements DeptService {
     private DeptMapper deptMapper;
 
     @Override
-    public Result deleteByPrimaryKey(Integer id) {
-        deptMapper.deleteByPrimaryKey(id);
+    public Result delete(Integer id) {
+        deptMapper.delete(id);
         return Result.success();
     }
 
@@ -29,9 +29,9 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public Result updateByPrimaryKeySelective(Dept record) {
+    public Result update(Dept record) {
         record.setUpdateTime(LocalDateTime.now());
-        deptMapper.updateByPrimaryKeySelective(record);
+        deptMapper.update(record);
         return Result.success();
     }
 

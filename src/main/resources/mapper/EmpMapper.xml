@@ -16,6 +16,7 @@
                 and e.entry_date between #{condition.begin} and #{condition.end}
             </if>
         </where>
+        order by update_time desc
     </select>
 
     <select id="info" resultType="com.xiaolin.pojo.Emp">
@@ -24,7 +25,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertEmp">
+    <insert id="insertEmp" useGeneratedKeys="true" keyProperty="id">
         insert into emp(username, password, name, gender, phone, job, salary, image, entry_date, dept_id, create_time,
                         update_time)
         values (#{username}, #{password}, #{name}, #{gender}, #{phone}, #{job}, #{salary}, #{image}, #{entryDate},
@@ -45,30 +46,20 @@
         where emp_id = #{id}
     </select>
 
-    <delete id="removeEmp">
+    <delete id="deleteEmp">
         delete
-        from emp e
-        <where>
-            <if test="ids != null">
-                id in
-                <foreach collection="ids" item="expr" separator="," open="(" close=")">
-                    id
-                </foreach>
-            </if>
-        </where>
+        from emp where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </delete>
 
-    <delete id="removeExpr">
+    <delete id="deleteExpr">
         delete
-        from emp_expr
-        <where>
-            <if test="ids != null">
-                emp_id in
-                <foreach collection="ids" item="expr" separator="," open="(" close=")">
-                    id
-                </foreach>
-            </if>
-        </where>
+        from emp_expr where emp_expr.emp_id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
     </delete>
 
     <update id="updateExpr">
