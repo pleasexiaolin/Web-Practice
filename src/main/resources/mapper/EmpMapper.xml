@@ -6,14 +6,14 @@
         from emp as e
                  left join dept as d on e.dept_id = d.id
         <where>
-            <if test="name != null and name != ''">
-                e.name like concat('%', #{name}, '%')
+            <if test="condition.name != null and condition.name != ''">
+                e.name like concat('%', #{condition.name}, '%')
             </if>
-            <if test="gender != null">
-                and e.gender = #{gender}
+            <if test="condition.gender != null">
+                and e.gender = #{condition.gender}
             </if>
-            <if test="begin != null and end != null">
-                and e.entry_date between #{begin} and #{end}
+            <if test="condition.begin != null and condition.end != null">
+                and e.entry_date between #{condition.begin} and #{condition.end}
             </if>
         </where>
     </select>
@@ -90,4 +90,19 @@
           , update_time=#{emp.updateTime}
         where id = #{emp.id}
     </update>
+    
+    <select id="getUserInfo" resultType="com.xiaolin.pojo.Emp">
+        select a.id,
+               a.name,
+               a.username
+        from emp a
+        <where>
+            <if test="emp.username != null and emp.username != ''">
+                a.username = #{emp.username}
+            </if>
+            <if test="emp.password != null and emp.password != ''">
+                and a.password = #{emp.password}
+            </if>
+        </where>
+    </select>
 </mapper>

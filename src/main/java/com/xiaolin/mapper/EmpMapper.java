@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface EmpMapper {
-    List<Emp> listEmp(EmpQueryParam queryParam);
+    List<Emp> listEmp(@Param("condition") EmpQueryParam condition);
 
     List<EmpExpr> listExpr(Integer id);
 
@@ -29,4 +29,6 @@ public interface EmpMapper {
     void updateEmp(@Param("emp") Emp emp);
 
     void updateExpr(@Param("expr")EmpExpr expr);
+
+    Emp getUserInfo(@Param("emp")Emp emp);
 }

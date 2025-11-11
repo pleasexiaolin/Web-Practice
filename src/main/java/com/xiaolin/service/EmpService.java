@@ -1,6 +1,5 @@
 package com.xiaolin.service;
 
-
 import com.xiaolin.common.PageResult;
 import com.xiaolin.common.Result;
 import com.xiaolin.pojo.Emp;
@@ -11,10 +10,10 @@ public interface EmpService {
     /**
      * 分页查询
      *
-     * @param queryParam 查询参数
+     * @param condition 查询参数
      * @return 分页数据
      */
-    PageResult<Emp> page(EmpQueryParam queryParam);
+    PageResult<Emp> page(EmpQueryParam condition);
 
     /**
      * 新增
@@ -35,6 +34,7 @@ public interface EmpService {
 
     /**
      * 详情
+     *
      * @param id
      * @return
      */
@@ -42,9 +42,18 @@ public interface EmpService {
 
     /**
      * 修改
+     *
      * @param emp
      * @return
      */
     Result update(Emp emp);
+
+    /**
+     * 登录
+     *
+     * @param emp
+     * @return
+     */
+    Result login(Emp emp);
 }
 

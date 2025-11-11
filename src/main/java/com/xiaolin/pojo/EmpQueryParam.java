@@ -1,6 +1,8 @@
 package com.xiaolin.pojo;
 
+import com.xiaolin.common.PageQuery;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -10,10 +12,9 @@ import java.time.LocalDate;
  * @description: 分页查询参数
  * @date 2025/11/9 18:07
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class EmpQueryParam {
-    private Integer page = 1; //页码
-    private Integer pageSize = 10; //每页展示记录数
+public class EmpQueryParam extends PageQuery {
     private String name; //姓名
     private Integer gender; //性别
     @DateTimeFormat(pattern = "yyyy-MM-dd")
