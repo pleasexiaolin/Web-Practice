@@ -30,7 +30,6 @@ public class EmpServiceImpl implements EmpService {
     private EmpMapper empMapper;
 
     @Override
-    @LogCall
     public PageResult<Emp> page(EmpQueryParam condition) {
         // PageHelper形式分页
         //1. 设置PageHelper分页参数
@@ -47,6 +46,7 @@ public class EmpServiceImpl implements EmpService {
 
 
     @Override
+    @LogCall
     @Transactional(rollbackFor = Exception.class)
     public Result insert(Emp emp) {
         //1.补全基础属性
@@ -70,6 +70,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @LogCall
     @Transactional(rollbackFor = Exception.class)
     public Result delete(Integer[] ids) {
         empMapper.deleteEmp(ids);
@@ -89,6 +90,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @LogCall
     @Transactional(rollbackFor = Exception.class)
     public Result update(Emp emp) {
         empMapper.updateEmp(emp);

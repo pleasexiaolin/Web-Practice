@@ -24,7 +24,7 @@ public class RequestInterceptor implements HandlerInterceptor {
     private static final String TOKEN = "token";
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
         // WebConfig 配置了 不拦截 login
         //1. 获取url
         //String req = request.getRequestURL().toString();
@@ -59,7 +59,7 @@ public class RequestInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
         // 清空当前线程绑定的id
         CurrentHolderUtil.remove();
     }

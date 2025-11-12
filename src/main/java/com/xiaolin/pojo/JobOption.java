@@ -1,6 +1,5 @@
 package com.xiaolin.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,10 +10,14 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class JobOption {
     // 职位
-    private List<String> jobList;
+    private List<Object> jobList;
     // 数据
-    private List<String> dataList;
+    private List<Object> dataList;
+
+    public JobOption(List<Object> jobList, List<Object> dataList) {
+        this.jobList = jobList;
+        this.dataList = dataList;
+    }
 }

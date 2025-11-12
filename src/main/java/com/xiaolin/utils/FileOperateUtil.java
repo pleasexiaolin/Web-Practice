@@ -2,6 +2,7 @@ package com.xiaolin.utils;
 
 import cn.hutool.core.io.FileUtil;
 import com.aliyun.oss.OSS;
+import com.xiaolin.aop.LogCall;
 import com.xiaolin.client.AliyunOssClient;
 import com.xiaolin.common.Result;
 import jakarta.servlet.ServletOutputStream;
@@ -38,6 +39,7 @@ public class FileOperateUtil {
      * @return 返回路径
      * @throws IOException
      */
+    @LogCall
     public static Result upload(MultipartFile file, Boolean flag) throws IOException {
 
         if (!file.isEmpty()) {
@@ -91,6 +93,7 @@ public class FileOperateUtil {
         return Result.error("文件不存在！");
     }
 
+    @LogCall
     public static Result download(String path, String name, HttpServletResponse response) {
 
         try (ServletOutputStream outputStream = response.getOutputStream();

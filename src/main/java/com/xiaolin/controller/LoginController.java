@@ -40,9 +40,10 @@ public class LoginController {
         return empService.login(emp);
     }
 
-    @GetMapping("/log")
-    public PageResult<OperateLog> log(LogQueryParam condition) {
-        return logService.list(condition);
+    @GetMapping("/log/page")
+    public Result log(LogQueryParam condition) {
+        PageResult<OperateLog> pageResult = logService.list(condition);
+        return Result.success(pageResult);
     }
 
 }
