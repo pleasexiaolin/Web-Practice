@@ -13,11 +13,20 @@ import java.util.List;
 public class JobOption {
     // 职位
     private List<Object> jobList;
+    //班级
+    private List<Object> clazzList;
+
     // 数据
     private List<Object> dataList;
 
-    public JobOption(List<Object> jobList, List<Object> dataList) {
-        this.jobList = jobList;
+    public JobOption(List<Object> keyList, List<Object> dataList, String flag) {
+
+        if ("job".equals(flag)){
+            this.jobList = keyList;
+        }else {
+            this.clazzList = keyList;
+        }
+
         this.dataList = dataList;
     }
 }

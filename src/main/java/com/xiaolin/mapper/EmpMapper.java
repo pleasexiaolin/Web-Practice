@@ -36,4 +36,6 @@ public interface EmpMapper {
     List<Map> countEmpGenderData();
 
     List<Emp> getDeptEmpList(Integer id);
+
+    List<Emp> list();
 }

@@ -30,4 +30,15 @@ public class ReportController {
     public Result getEmpGenderData() {
         return reportService.getEmpGenderData();
     }
+
+    // 学员学历统计
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData() {
+        return reportService.getStudentDegreeData();
+    }
+    // 班级人数统计
+    @GetMapping("/studentCountData")
+    public Result getStudentGenderData() {
+        return reportService.getStudentCountData();
+    }
 }

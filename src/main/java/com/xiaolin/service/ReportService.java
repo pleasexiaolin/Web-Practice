@@ -10,4 +10,8 @@ public interface ReportService {
     Result getEmpJobData();
 
     Result getEmpGenderData();
+
+    Result getStudentDegreeData();
+
+    Result getStudentCountData();
 }

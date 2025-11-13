@@ -18,5 +18,7 @@ public interface EmpService {
     Result update(Emp emp);
 
     Result login(Emp emp);
+
+    Result list();
 }
 

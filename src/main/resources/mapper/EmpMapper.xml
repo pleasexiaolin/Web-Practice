@@ -130,4 +130,9 @@
     <select id="getDeptEmpList" resultType="com.xiaolin.pojo.Emp">
         select * from emp where dept_id = #{id}
     </select>
+
+    <select id="list" resultType="com.xiaolin.pojo.Emp">
+        select *
+        from emp;
+    </select>
 </mapper>

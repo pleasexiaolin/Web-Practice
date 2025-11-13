@@ -35,7 +35,7 @@ public class EmpController {
      * @return 成功 失败
      */
     @DeleteMapping
-    private Result deleteEmp(Integer[] ids) {return empService.delete(ids);}
+    public Result deleteEmp(Integer[] ids) {return empService.delete(ids);}
     /**
      * 修改员工
      *
@@ -43,7 +43,7 @@ public class EmpController {
      * @return 成功 失败
      */
     @PutMapping
-    private Result update(@RequestBody Emp emp) {return empService.update(emp);}
+    public Result update(@RequestBody Emp emp) {return empService.update(emp);}
     /**
      * 员工详情（回显）
      *
@@ -51,7 +51,7 @@ public class EmpController {
      * @return 详情信息
      */
     @GetMapping("/{id}")
-    private Result info(@PathVariable Integer id) {return empService.info(id);}
+    public Result info(@PathVariable Integer id) {return empService.info(id);}
     /**
      * 分页查询员工
      *
@@ -62,5 +62,11 @@ public class EmpController {
     public Result page(EmpQueryParam condition) {
         PageResult<Emp> pageResult = empService.page(condition);
         return Result.success(pageResult);
+    }
+
+    // 查询全部员工
+    @GetMapping("/list")
+    public Result list(){
+        return empService.list();
     }
 }

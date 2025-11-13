@@ -102,6 +102,12 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    public Result list() {
+        return Result.success(empMapper.list());
+    }
+
+    @Override
+    @LogCall
     public Result login(Emp emp) {
         Emp loginEmp = empMapper.getUserInfo(emp);
 
@@ -119,7 +125,7 @@ public class EmpServiceImpl implements EmpService {
             return Result.success(loginInfo);
         }
 
-        return null;
+        return Result.error("用户不存在！");
     }
 
 }

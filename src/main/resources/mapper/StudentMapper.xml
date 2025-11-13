@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaolin.mapper.StudentMapper">
+    <select id="page" resultType="com.xiaolin.pojo.Student">
+        select *
+        from student
+        <where>
+            <if test="condition.name != null and condition.name != ''">
+                and name like concat('%', #{condition.name}, '%')
+            </if>
+            <if test="condition.degree != null">
+                and degree = #{condition.degree}
+            </if>
+            <if test="condition.clazzId != null">
+                and clazzId = #{condition.clazzId}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <insert id="insert">
+        insert into student (name, no, gender, phone, id_card, is_college, address, degree, graduation_date, clazz_id,
+                             violation_count, violation_score, create_time, update_time)
+        values (#{name}, #{no}, #{gender}, #{phone}, #{idCard}, #{isCollege}, #{address}, #{degree}, #{graduationDate},
+                #{clazzId}, #{violationCount}, #{violationScore}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="update">
+        update student
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="no != null">
+                no = #{no},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard},
+            </if>
+            <if test="isCollege != null">
+                is_college = #{isCollege},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="degree != null">
+                degree = #{degree},
+            </if>
+            <if test="graduationDate != null">
+                graduation_date = #{graduationDate},
+            </if>
+            <if test="clazzId != null">
+                clazz_id = #{clazzId},
+            </if>
+            <if test="violationCount != null">
+                violation_count = #{violationCount},
+            </if>
+            <if test="violationScore != null">
+                violation_score = #{violationScore},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete">
+        delete
+        from student where id in
+        <foreach collection="ids" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="info" resultType="com.xiaolin.pojo.Student">
+        select *
+        from student
+        where id = #{id}
+    </select>
+
+    <update id="updateScoureById">
+        update student
+        set score = #{score}
+        where id = #{id}
+    </update>
+
+    <select id="countStudentDegreeData" resultType="java.util.Map">
+        select (case degree
+                    when 1 then '初中'
+                    when 2 then '高中'
+                    when 3 then '大专'
+                    when 4 then '本科'
+                    when 5 then '硕士'
+                    when 6 then '博士'
+                    else '其他' end) name,
+               count(*)              value
+        from student
+        group by degree
+        order by value
+    </select>
+</mapper>
