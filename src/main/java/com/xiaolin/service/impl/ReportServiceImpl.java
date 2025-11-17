@@ -4,6 +4,7 @@ import com.xiaolin.common.Result;
 import com.xiaolin.mapper.ClazzMapper;
 import com.xiaolin.mapper.EmpMapper;
 import com.xiaolin.mapper.StudentMapper;
+import com.xiaolin.pojo.ClazzOption;
 import com.xiaolin.pojo.JobOption;
 import com.xiaolin.service.ReportService;
 import jakarta.annotation.Resource;
@@ -51,8 +52,8 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Result getStudentCountData() {
         List<Map<String, Object>> list = clazzMapper.countStudentCountData();
-        List<Object> jobList = list.stream().map(dataMap -> dataMap.get("pos")).toList();
+        List<Object> clazzList = list.stream().map(dataMap -> dataMap.get("pos")).toList();
         List<Object> dataList = list.stream().map(dataMap -> dataMap.get("total")).toList();
-        return Result.success(new JobOption(jobList, dataList,"student"));
+        return Result.success(new ClazzOption(clazzList, dataList));
     }
 }

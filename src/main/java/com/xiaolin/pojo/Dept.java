@@ -1,5 +1,6 @@
 package com.xiaolin.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class  Dept {
+public class Dept {
     /**
      * ID, 主键
      */
@@ -29,6 +30,7 @@ public class  Dept {
     /**
      * 修改时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
 }

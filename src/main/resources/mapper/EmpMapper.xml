@@ -133,6 +133,6 @@
 
     <select id="list" resultType="com.xiaolin.pojo.Emp">
         select *
-        from emp;
+        from emp order by update_time desc;
     </select>
 </mapper>

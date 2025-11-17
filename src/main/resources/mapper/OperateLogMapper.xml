@@ -11,16 +11,6 @@
     <select id="list" resultType="com.xiaolin.pojo.OperateLog">
         select *
         from operate_log a
-        <where>
-            <if test="condition.operateEmpName != null">
-                a.operateEmpName = #{condition.operateEmpName}
-            </if>
-            <if test="condition.costTimeFrom != null">
-                and a.costTime &gt;= #{condition.costTimeFrom}
-            </if>
-            <if test="condition.costTimeTo != null">
-                and a.costTime &lt;= #{condition.costTimeTo}
-            </if>
-        </where>
+        order by a.operate_time desc
     </select>
 </mapper>

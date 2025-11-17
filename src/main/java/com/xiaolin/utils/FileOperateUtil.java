@@ -48,7 +48,7 @@ public class FileOperateUtil {
 
             // 填写Object完整路径，例如2025/11/a.png。Object完整路径中不能包含Bucket名称。
             //获取当前系统日期的字符串,格式为 yyyy/MM
-            String dir = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM"));
+            String dir = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
             //生成一个新的不重复的文件名
             String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
             String objectName = dir + "/" + newFileName;

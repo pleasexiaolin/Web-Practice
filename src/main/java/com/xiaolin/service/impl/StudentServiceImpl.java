@@ -65,7 +65,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Result violation(Integer id, Integer score) {
-        studentMapper.updateScoureById(id, score);
+        // 获取历史数据
+        Student student = studentMapper.info(id);
+        studentMapper.updateScoureById(id, student.getViolationScore() + score, student.getViolationCount() + 1);
         return Result.success();
     }
 }

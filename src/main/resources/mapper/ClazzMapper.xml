@@ -2,21 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaolin.mapper.ClazzMapper">
     <select id="page" resultType="com.xiaolin.pojo.Clazz">
-        select *
-        from clazz
+        select a.*,
+               b.name  as master_name,
+               case
+                   when a.begin_date &gt; now() then '未开课'
+                   when a.end_date &lt; now() then '已结课'
+                   else '在读'
+                   end as status
+        from clazz a
+                 left join emp b on a.master_id = b.id
         <where>
-            <if test="condition">
+            <if test="condition.name != null and condition.name != ''">
+                a.name like concat('%', #{condition.name}, '%')
+            </if>
+            <if test="condition.begin != null">
+                and begin_date &gt;= #{condition.begin}
+            </if>
+            <if test="condition.end != null">
+                and end_date &lt;= #{condition.end}
             </if>
         </where>
-        order by update_time desc
+        order by a.update_time desc
     </select>
 
     <insert id="insert">
-        insert into clazz() value (#{name} )
+        insert into clazz(name, room, begin_date, end_date, master_id, subject, create_time, update_time)
+        values (#{name}, #{room}, #{beginDate}, #{endDate}, #{masterId}, #{subject}, now(), now())
     </insert>
 
     <update id="update">
-        update clazz set name = #{name} where id = #{id}
+        update clazz
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="room != null and room != ''">
+                room = #{room},
+            </if>
+            <if test="beginDate != null">
+                begin_date = #{beginDate},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate},
+            </if>
+            <if test="masterId != null">
+                master_id = #{masterId},
+            </if>
+            <if test="subject != null">
+                subject = #{subject},
+            </if>
+            update_time = now()
+        </set>
+        where id = #{id}
     </update>
 
     <delete id="delete">
@@ -25,24 +62,22 @@
         where id = #{id}
     </delete>
 
-    <delete id="info">
+    <select id="info" resultType="com.xiaolin.pojo.Clazz">
         select *
         from clazz
         where id = #{id}
-    </delete>
+    </select>
 
     <select id="list" resultType="com.xiaolin.pojo.Clazz">
         select *
-        from clazz;
+        from clazz order by update_time desc;
     </select>
 
     <select id="countStudentCountData" resultType="java.util.Map">
-        select (case gender
-                    when 1 then '男性'
-                    when 2 then '女性'
-                    else '其他' end) name,
-               count(*)              value
-        from student
-        group by clazz_id
+        select a.name as pos,
+               count(*)  total
+        from clazz a
+                 left join student b on a.id = b.clazz_id
+        group by a.name
     </select>
 </mapper>

@@ -20,13 +20,13 @@ public interface StudentMapper {
 
     void insert(Student clazz);
 
-    void update(Student clazz);
+    void update( Student clazz);
 
     void delete(@Param("ids") Integer[] id);
 
     Student info(Integer id);
 
-    void updateScoureById(@Param("id") Integer id, @Param("score") Integer score);
+    void updateScoureById(@Param("id") Integer id, @Param("score") Integer score, @Param("count") Integer count);
 
     List<Map> countStudentDegreeData();
 }

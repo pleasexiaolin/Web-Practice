@@ -41,7 +41,7 @@ public class ClazzController {
     }
 
     //详情
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Result info(@PathVariable Integer id) {
         return clazzService.info(id);
     }

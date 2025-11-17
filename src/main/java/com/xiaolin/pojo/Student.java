@@ -1,5 +1,6 @@
 package com.xiaolin.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class Student {
     private Integer violationCount; //违纪次数
     private Integer violationScore; //违纪扣分
     private LocalDateTime createTime; //创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updateTime; //修改时间
 
     private String clazzName;//班级名称

@@ -1,17 +1,14 @@
 package com.xiaolin.aop;
 
-import cn.hutool.json.JSONUtil;
 import com.xiaolin.pojo.OperateLog;
 import com.xiaolin.service.LogService;
 import com.xiaolin.utils.CurrentHolderUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
 
 /**
  * @author lzh
@@ -19,6 +16,7 @@ import java.util.Arrays;
  * @date 2025/11/11 16:44
  */
 @Aspect
+@Slf4j
 @Component
 public class LogAspect {
 
@@ -40,20 +38,13 @@ public class LogAspect {
         Object result = joinPoint.proceed();
         // 当前时间
         long endTime = System.currentTimeMillis();
-        // 耗时
-        long costTime = endTime - startTime;
-
         // 构建日志对象
-        OperateLog operateLog = new OperateLog();
-        operateLog.setOperateEmpName(getCurrentUserName());
-        operateLog.setOperateTime(LocalDateTime.now());
-        operateLog.setClassName(joinPoint.getTarget().getClass().getName());
-        operateLog.setMethodName(joinPoint.getSignature().getName());
-        operateLog.setMethodParams(Arrays.toString(joinPoint.getArgs()));
-        operateLog.setReturnValue(JSONUtil.toJsonStr(result));
-        operateLog.setCostTime(costTime);
+        try {
+            logService.inert(new OperateLog(joinPoint, getCurrentUserName(), result, (endTime - startTime)));
+        } catch (Exception e) {
+            LogAspect.log.error("日志记录异常", e);
+        }
 
-        logService.inert(operateLog);
         return result;
     }
 

@@ -2,20 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaolin.mapper.StudentMapper">
     <select id="page" resultType="com.xiaolin.pojo.Student">
-        select *
-        from student
+        select *, c.name as clazz_name
+        from student a left join clazz c on c.id = a.clazz_id
         <where>
             <if test="condition.name != null and condition.name != ''">
-                and name like concat('%', #{condition.name}, '%')
+                and a.name like concat('%', #{condition.name}, '%')
             </if>
             <if test="condition.degree != null">
-                and degree = #{condition.degree}
+                and a.degree = #{condition.degree}
             </if>
             <if test="condition.clazzId != null">
-                and clazzId = #{condition.clazzId}
+                and a.clazz_id = #{condition.clazzId}
             </if>
         </where>
-        order by update_time desc
+        order by a.update_time desc
     </select>
 
     <insert id="insert">
@@ -28,25 +28,25 @@
     <update id="update">
         update student
         <set>
-            <if test="name != null">
+            <if test="name != null and name != ''">
                 name = #{name},
             </if>
-            <if test="no != null">
+            <if test="no != null and no != ''">
                 no = #{no},
             </if>
             <if test="gender != null">
                 gender = #{gender},
             </if>
-            <if test="phone != null">
+            <if test="phone != null and phone != ''">
                 phone = #{phone},
             </if>
-            <if test="idCard != null">
+            <if test="idCard != null and idCard != ''">
                 id_card = #{idCard},
             </if>
             <if test="isCollege != null">
                 is_college = #{isCollege},
             </if>
-            <if test="address != null">
+            <if test="address != null and address != ''">
                 address = #{address},
             </if>
             <if test="degree != null">
@@ -58,19 +58,11 @@
             <if test="clazzId != null">
                 clazz_id = #{clazzId},
             </if>
-            <if test="violationCount != null">
-                violation_count = #{violationCount},
-            </if>
-            <if test="violationScore != null">
-                violation_score = #{violationScore},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime},
-            </if>
             <if test="updateTime != null">
                 update_time = #{updateTime}
             </if>
         </set>
+        where id = #{id}
     </update>
 
     <delete id="delete">
@@ -89,7 +81,8 @@
 
     <update id="updateScoureById">
         update student
-        set score = #{score}
+        set violation_score = #{score},
+         violation_count = #{count}
         where id = #{id}
     </update>
 
